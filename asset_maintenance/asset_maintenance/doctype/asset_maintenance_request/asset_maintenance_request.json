@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "AMR-.####",
  "creation": "2025-09-30 12:31:48.070699",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -60,7 +61,7 @@
   {
    "fetch_from": "requested_by.employee_name",
    "fieldname": "employee_name",
-   "fieldtype": "Date",
+   "fieldtype": "Data",
    "label": "Employee Name"
   },
   {
@@ -103,10 +104,11 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-09-30 12:44:19.260155",
+ "modified": "2025-09-30 17:10:52.336673",
  "modified_by": "Administrator",
  "module": "Asset Maintenance",
  "name": "Asset Maintenance Request",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
