@@ -137,13 +137,11 @@ app_license = "unlicense"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	"Task": {
+		"on_update": "asset_maintenance.asset_maintenance.doc_events.task.update_asset_maintenance_request"
+	}
+}
 
 # Scheduled Tasks
 # ---------------
