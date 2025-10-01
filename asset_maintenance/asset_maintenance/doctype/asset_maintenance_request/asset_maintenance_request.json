@@ -17,6 +17,7 @@
   "employee_name",
   "department",
   "expected_completed_date",
+  "completed_date",
   "resolution_time"
  ],
  "fields": [
@@ -86,25 +87,35 @@
   {
    "fieldname": "resolution_time",
    "fieldtype": "Float",
-   "label": "Resolution Time"
+   "label": "Resolution Time(hours)",
+   "read_only": 1
   },
   {
+   "default": "Open",
    "fieldname": "status",
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
    "options": "\nOpen\nIn Progress\nIn Review\nCompleted",
+   "read_only": 1,
    "reqd": 1
   },
   {
    "fieldname": "column_break_hzfr",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "completed_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Completed Date",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-09-30 17:10:52.336673",
+ "modified": "2025-10-01 16:49:57.472647",
  "modified_by": "Administrator",
  "module": "Asset Maintenance",
  "name": "Asset Maintenance Request",
