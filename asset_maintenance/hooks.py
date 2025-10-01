@@ -244,4 +244,5 @@ fixtures = [
     {"dt": "Workflow State", "filters": [["name", "in", ["Draft", "Progress", "Review", "Completed"]]]},
     {"dt": "Workflow", "filters": [["name", "in", ["Asset Maintenance Request"]]]},
     {"dt": "Workflow Action Master", "filters": [["name", "in", ["Start Maintenance", "Send for Review", "Approve", "Reject"]]]},
+	{"dt": "Workspace", "filters": [["module", "in", ["Asset Maintenance"]]]},
 ]
