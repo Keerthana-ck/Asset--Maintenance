@@ -241,4 +241,7 @@ doc_events = {
 # }
 fixtures = [
     {"doctype": "Role", "filters": [["role_name", "in", ["Maintenance Supervisor", "Maintenance Team member"]]]},
+    {"dt": "Workflow State", "filters": [["name", "in", ["Draft", "Progress", "Review", "Completed"]]]},
+    {"dt": "Workflow", "filters": [["name", "in", ["Asset Maintenance Request"]]]},
+    {"dt": "Workflow Action Master", "filters": [["name", "in", ["Start Maintenance", "Send for Review", "Approve", "Reject"]]]},
 ]
