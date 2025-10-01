@@ -1,0 +1,13 @@
+{
+ "creation": "2025-10-01 19:11:27.921705",
+ "docstatus": 0,
+ "doctype": "Dashboard Chart Source",
+ "idx": 0,
+ "modified": "2025-10-01 19:11:27.921705",
+ "modified_by": "Administrator",
+ "module": "Asset Maintenance",
+ "name": "Status wise Request",
+ "owner": "Administrator",
+ "source_name": "Status wise Request",
+ "timeseries": 0
+}
