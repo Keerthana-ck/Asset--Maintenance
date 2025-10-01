@@ -10,5 +10,26 @@ frappe.ui.form.on("Asset Maintenance Request", {
                 }
             };
         });
+        if (!frm.is_new()) {
+            if (frappe.user.has_role("Maintenance Supervisor")) {
+                frm.add_custom_button(
+                    __("Create Maintenance Task"),
+                    function() {
+                      frappe.call({
+                            method: "asset_maintenance.asset_maintenance.doctype.asset_maintenance_request.asset_maintenance_request.create_task",
+                            args: {
+                                doc: frm.doc
+                            },
+                            callback: function(r) {
+                                if (!r.exc) {
+                                    frappe.msgprint(__("Task Created Successfully "));
+                                    frm.reload_doc();
+                                }
+                            }
+                        });
+                    }
+                );
+            }
+        }
     }
 });
