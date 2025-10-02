@@ -10,7 +10,7 @@ frappe.ui.form.on("Asset Maintenance Request", {
                 }
             };
         });
-        if (!frm.is_new()) {
+        if (!frm.is_new() && frm.doc.status == "Open") {
             if (frappe.user.has_role("Maintenance Supervisor")) {
                 frm.add_custom_button(
                     __("Create Maintenance Task"),
