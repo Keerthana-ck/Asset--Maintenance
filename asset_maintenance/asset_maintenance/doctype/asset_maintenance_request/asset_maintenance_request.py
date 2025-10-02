@@ -15,6 +15,7 @@ class AssetMaintenanceRequest(Document):
 
 	def validate(self):
 		self.validate_asset_maintenance_request()
+		self.validate_expected_completion_date()
 
 	def send_email(self):
 		"""Method to send email notification to Maintenance Supervisor , if the asset maintenance request is Urgent """
@@ -53,6 +54,13 @@ class AssetMaintenanceRequest(Document):
 	        frappe.throw(
 	            _("Asset {0} is already booked during this time slot").format(self.asset)
 	        )
+
+	def validate_expected_completion_date(self):
+	    """Validate Requested date and Expacted Completion data"""
+	    if self.request_date and self.expected_completed_date:
+	        if self.expected_completed_date <= self.request_date:
+	            frappe.throw(_("Expected Completion Date must be greater than Requested Dßate"))
+
 
 
 @frappe.whitelist()
