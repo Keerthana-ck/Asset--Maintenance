@@ -6,11 +6,15 @@ import json
 from frappe.model.document import Document
 from frappe.utils.user import get_users_with_role
 from frappe.desk.form.assign_to import add as assign_task
+from frappe import _
 
 
 class AssetMaintenanceRequest(Document):
 	def after_insert(self):
 		self.send_email()
+
+	def validate(self):
+		self.validate_asset_maintenance_request()
 
 	def send_email(self):
 		"""Method to send email notification to Maintenance Supervisor , if the asset maintenance request is Urgent """
@@ -25,6 +29,31 @@ class AssetMaintenanceRequest(Document):
 	                message = message,
 	                delayed = False
 				)
+
+	def validate_asset_maintenance_request(self):
+	    """method to Validate Asset Maintenance Request to prevent duplicate entry"""
+	    overlapping = frappe.db.sql("""
+	        SELECT name
+	        FROM `tabAsset Maintenance Request`
+	        WHERE asset = %(asset)s
+	          AND status NOT IN ('Completed')
+	          AND name != %(name)s
+	          AND (
+	                (%(request_date)s < expected_completed_date)
+	                AND (%(expected_completed_date)s > request_date)
+	              )
+	    """, {
+	        "asset": self.asset,
+	        "request_date": self.request_date,
+	        "expected_completed_date": self.expected_completed_date,
+	        "name": self.name or "New Asset Maintenance Request"
+	    }, as_dict=True)
+
+	    if overlapping:
+	        frappe.throw(
+	            _("Asset {0} is already booked during this time slot").format(self.asset)
+	        )
+
 
 @frappe.whitelist()
 def create_task(doc):
